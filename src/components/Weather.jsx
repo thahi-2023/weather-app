@@ -20,14 +20,19 @@ function Weather() {
        e.preventDefault()
         if (form.city=== "") {
             alert("Add values");
-        } else {
-            const res = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${form.city},${form.country}&appid=${APIKEY}`)
+        } else{ 
+          try {
+            const res = await fetch (
+              `https://api.openweathermap.org/data/2.5/weather?q=${form.city},${form.country}&appid=${APIKEY}`)
 
             const data = await res.json()
             console.log(data)
             setWeather({data: data})
             
+        }catch (error) {
+          console.log(error)
         }
+      }
     }
 
  
